@@ -1,18 +1,59 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test</title>
-    <link rel="stylesheet" href="./style/style.css" />
-  </head>
-  <body>
-    <div id="container"></div>
-    <script src="./scripts/easyCasualGame.js" type="module"></script>
-    <!-- <script src="./scripts/testOvalMotion.js" type="module"></script> -->
-    <!-- <script src="./scripts/testCircleMotion.js" type="module"></script> -->
-    <!-- <script src="./scripts/testMotion.js" type="module"></script> -->
+<link type="text/css" rel="stylesheet" href="./style/main.css" />
+<link href="./style/index.css" rel="stylesheet" />
+<body>
+  <script type="x-shader/x-vertex" id="vertexshader">
 
-    <!-- <script  src="./scripts/instanceLesson_01.js"  type="module"></script>   -->
-  </body>
-</html>
+    attribute float size;
+
+    varying vec3 vColor;
+
+    void main() {
+
+      vColor = color;
+
+      vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+      gl_PointSize = size * ( 300.0 / -mvPosition.z );
+
+      gl_Position = projectionMatrix * mvPosition;
+
+    }
+  </script>
+
+  <script type="x-shader/x-fragment" id="fragmentshader">
+
+    uniform sampler2D pointTexture;
+
+    varying vec3 vColor;
+
+    void main() {
+
+      gl_FragColor = vec4( vColor, 1.0 );
+
+      gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+
+    }
+  </script>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://threejs.org/build/three.module.js"
+      }
+    }
+  </script>
+  <!-- <script src="./scripts/modules/gameplay.js" type="module"></script> -->
+  <div class="selection">
+    <div class="selection__health"></div>
+  </div>
+  <!-- <script src="./scripts/index.js" type="module"></script> -->
+  <script src="./scripts/meshBackground.js" type="module"></script>
+  <!-- <script src="./scripts/index.js" type="module"></script> -->
+  <!-- <script src="./scripts/createTriangle.js" type="module"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.2/dat.gui.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script> -->
+  <!-- <script src="https://Threejs.org/examples/jsm/libs/stats.module.js"></script> -->
+  <!-- <script src="https://Threejs.org/examples/js/controls/OrbitControls.js"></script> -->
+</body>

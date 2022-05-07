@@ -1,0 +1,27 @@
+body {
+    background-color: #000000;
+  }
+
+  #selection {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+  }
+
+  .selection__container {
+    height: 70px;
+    width: 100%;
+    border: 1px solid white;
+  }
+
+  .selection__health {
+    display: flex;
+    width: 20px;
+    background-color: crimson;
+  }
